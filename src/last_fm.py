@@ -5,7 +5,14 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+mqhost = os.environ.get("HOST")
+mquser = os.environ.get("USER")
+mqpass = os.environ.get("PASS")
+mqport = os.environ.get("PORT")
+LAST_FM_KEY=os.environ.get("LAST_FM_KEY")
+
+credentials =  pika.PlainCredentials(mquser, mqpass)
+connection = pika.BlockingConnection(pika.ConnectionParameters(mqhost, mqport,'/',credentials))
 channel = connection.channel()
 
 channel.queue_declare(queue='genre')
@@ -17,7 +24,6 @@ def callback(ch, method, properties, body):
     # create URL
     urlRoot = "http://ws.audioscrobbler.com/2.0/?"
     method = "track.getinfo"
-    LAST_FM_KEY=os.environ.get("LAST_FM_KEY")
     artist = info['artist']
     track = info['song']
 
