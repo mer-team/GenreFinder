@@ -101,6 +101,6 @@ describe('Testing RabbitMQ', ()=>{
           }, { noAck: true });
         });
       });
-    }, 3000);
+    }, 4500);
   });
 });
