@@ -78,7 +78,7 @@ describe('Testing RabbitMQ', ()=>{
   // });
 
   it("Should receive the genre from RabbitMQ", (done)=>{
-    setTimeout(function(){
+    //setTimeout(function(){
       amqp.connect(config, (err, conn)=>{
         if(err){
           console.log("Connection Error");
@@ -101,6 +101,6 @@ describe('Testing RabbitMQ', ()=>{
           }, { noAck: true });
         });
       });
-    }, 4500);
+    //}, 4500);
   });
 });
