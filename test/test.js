@@ -60,22 +60,22 @@ describe('Testing RabbitMQ', ()=>{
     });
   });
 
-  it('Should create the RabbitMQ channel', (done)=>{
-    amqp.connect(config, (err, conn)=>{
-      if(err){
-        console.log("Connection Error");
-        return;
-      }
-      conn.createConfirmChannel((err, ch)=>{
-        if(err){
-          console.log("Error Creating Channel");
-          return;
-        }
-        done();
-        setTimeout(function() { conn.close();}, 500);
-      });
-    });
-  });
+  // it('Should create the RabbitMQ channel', (done)=>{
+  //   amqp.connect(config, (err, conn)=>{
+  //     if(err){
+  //       console.log("Connection Error");
+  //       return;
+  //     }
+  //     conn.createConfirmChannel((err, ch)=>{
+  //       if(err){
+  //         console.log("Error Creating Channel");
+  //         return;
+  //       }
+  //       done();
+  //       setTimeout(function() { conn.close();}, 500);
+  //     });
+  //   });
+  // });
 
   it("Should receive the genre from RabbitMQ", (done)=>{
     setTimeout(function(){
