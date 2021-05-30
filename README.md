@@ -60,4 +60,4 @@ The tests can be accessed on the `test` folder. Test list:
 - [x] Check the RabbitMQ connection
 - [x] Create a RabbitMQ channel
 - [x] Send a music to find the genre
-- [x] Check the api response and compare it to the expected one
+- [ ] Check the api response and compare it to the expected one (commented, only works locally)

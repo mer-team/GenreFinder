@@ -60,47 +60,45 @@ describe('Testing RabbitMQ', ()=>{
     });
   });
 
-  // it('Should create the RabbitMQ channel', (done)=>{
+  it('Should create the RabbitMQ channel', (done)=>{
+    amqp.connect(config, (err, conn)=>{
+      if(err){
+        console.log("Connection Error");
+        return;
+      }
+      conn.createConfirmChannel((err, ch)=>{
+        if(err){
+          console.log("Error Creating Channel");
+          return;
+        }
+        done();
+        setTimeout(function() { conn.close();}, 500);
+      });
+    });
+  });
+
+  // it("Should receive the genre from RabbitMQ", (done)=>{
   //   amqp.connect(config, (err, conn)=>{
   //     if(err){
   //       console.log("Connection Error");
   //       return;
   //     }
-  //     conn.createConfirmChannel((err, ch)=>{
+  //     conn.createChannel( (err, ch)=>{
   //       if(err){
   //         console.log("Error Creating Channel");
   //         return;
   //       }
-  //       done();
-  //       setTimeout(function() { conn.close();}, 500);
+  //       ch.assertQueue(qSec, { durable: false });
+  //       ch.consume(qSec, function (msg) {
+  //         if (JSON.stringify(msg.content.toString()) === JSON.stringify(serv)){
+  //           done();
+  //           setTimeout(function() { conn.close();}, 500);
+  //         } else {
+  //           console.log("Unexpected message");
+  //           return;
+  //         }
+  //       }, { noAck: true });
   //     });
   //   });
   // });
-
-  it("Should receive the genre from RabbitMQ", (done)=>{
-    //setTimeout(function(){
-      amqp.connect(config, (err, conn)=>{
-        if(err){
-          console.log("Connection Error");
-          return;
-        }
-        conn.createChannel( (err, ch)=>{
-          if(err){
-            console.log("Error Creating Channel");
-            return;
-          }
-          ch.assertQueue(qSec, { durable: false });
-          ch.consume(qSec, function (msg) {
-            if (JSON.stringify(msg.content.toString()) === JSON.stringify(serv)){
-              done();
-              setTimeout(function() { conn.close();}, 500);
-            } else {
-              console.log("Unexpected message");
-              return;
-            }
-          }, { noAck: true });
-        });
-      });
-    //}, 4500);
-  });
 });
