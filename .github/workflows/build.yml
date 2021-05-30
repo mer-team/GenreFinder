@@ -30,10 +30,10 @@ jobs:
     - name: Build Local Manager Docker Image
       run: docker build -t genrefinder:local .
 
-    - name: Container Image Scan
-      uses: azure/container-scan@v0
-      with:
-        image-name: genrefinder:local
+    #- name: Container Image Scan
+    #  uses: azure/container-scan@v0
+    #  with:
+    #    image-name: genrefinder:local
 
     - name: Run Local GenreFinder Docker Image
       run: docker run -d -e TIME=10 -e USER=$MQUSER -e PASS=$MQPASS -e HOST=$MQHOST -e MNG_PORT=$MNG_PORT -e LAST_FM_KEY=${{ secrets.LAST_FM_KEY }} --net=host genrefinder:local
