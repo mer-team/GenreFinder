@@ -5,11 +5,14 @@ This service is connected with ['Manager'](https://github.com/mer-team/Tests/blo
 Run `python3.7 last_fm.py`
 
 ## Input through RabbitMQ
-
 ```javascript
 { "song": "Track Name", "artist": "Artist Name" }
                      OR                      
 { "song": "Undefined", "artist": "Undefined" }
+```
+Example:
+```javascript
+{ "song": "happier", "artist": "marshmello" }
 ```
 
 ## Output
@@ -23,7 +26,7 @@ Obtaining the musical genres succeed:
 { "Service": "GenreFinder", "Error": "False", "Result": "Genres" }
 ```
 
-### Docker Params
+## Docker Params
 | Arg | Default | Description |
 | --- | --- | --- |
 | HOST | localhost | RabbitMQ host |
@@ -34,7 +37,7 @@ Obtaining the musical genres succeed:
 | TIME | 10 | Timeout to check if the service is up |
 | LAST_FM_KEY | apikey | Last FM API key |
 
-### Run Local Microservice
+## Run Local Microservice
 Run Rabbit
 ```
 docker run -d -e RABBITMQ_DEFAULT_USER=merUser -e RABBITMQ_DEFAULT_PASS=passwordMER -p 15672:15672 -p 5672:5672 rabbitmq:3-management-alpine
@@ -56,7 +59,7 @@ docker run -e TIME=10 -e USER=merUser -e PASS=passwordMER -e HOST=localhost -e P
 ```
 
 ## Tests
-The tests can be accessed on the `test` folder. Test list:
+The tests can be accessed on the `test` folder. Tests list:
 - [x] Check the RabbitMQ connection
 - [x] Create a RabbitMQ channel
 - [x] Send a music to find the genre

@@ -1,8 +1,3 @@
-// Song: Cartoon - Howling (Ft. Asena)[NCS Release]
-// Music provided by NoCopyrightSounds
-// Free Download/Stream: http://ncs.io/Howling
-// Watch: http://youtu.be/JiF3pbvR5G0
-
 const fs = require('fs');
 var amqp = require('amqplib/callback_api');
 
